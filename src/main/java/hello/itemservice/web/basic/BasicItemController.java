@@ -70,12 +70,19 @@ public class BasicItemController {
     }
 
 
-    @PostMapping("/add")
+    //@PostMapping("/add")
     public String addItemV4(Item item) {
         itemRepository.save(item);
         // model.addAttribute("item", item); //우리가 만든 임의의 객체의 경우 ModelAttribute 생략 가능
         return "basic/item";
     }
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        // model.addAttribute("item", item); //우리가 만든 임의의 객체의 경우 ModelAttribute 생략 가능
+        return "redirect:/basic/items/" + item.getId();
+    }
+
 
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable("itemId") Long itemId, Model model) {
