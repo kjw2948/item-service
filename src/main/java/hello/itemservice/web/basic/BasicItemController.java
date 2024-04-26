@@ -111,6 +111,7 @@ public class BasicItemController {
         itemRepository.save(new Item("itemA", 10000, 10));
         itemRepository.save(new Item("itemB", 20000, 20));
         itemRepository.save(new Item("itemC", 3000, 40));
+        itemRepository.save(new Item("김정원", 15000, 30));
     }
 
 }
