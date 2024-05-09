@@ -1,0 +1,8 @@
+controller 흐름
+클라이언트에서 http 요청이 들어옴 -> servlet dispatch에서 핸들러 매핑을 하고 매핑되는 핸들러가 있으면 핸들러 어댑터로 이동하여
+핸들러를 실행시켜 ModelAndView를 반환 받는다
+
+그리고 viewResolver를 호출하여 View를 반환 받는다. Dispatcher Servlet에서 핸들러에게 받은 모델을 렌더링 하여 view 전달하고
+view가 화면에 해당 정보를 html으로 띄워준다
+
+
