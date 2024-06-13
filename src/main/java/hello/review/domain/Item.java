@@ -1,4 +1,4 @@
-package hello.itemservice2.domain.item;
+package hello.review.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,17 +6,19 @@ import lombok.Setter;
 @Getter @Setter
 public class Item {
 
-    private String itemName;
     private Long id;
+    private String name;
     private Integer price;
-    private int quantity;
+    private Integer quantity;
 
     public Item() {
-    }
 
-    public Item(String itemName, Integer price, int quantity) {
-        this.itemName = itemName;
+    }
+    public Item(String name, Integer price, Integer quantity) {
+        this.name = name;
         this.price = price;
         this.quantity = quantity;
     }
 }
+
+
