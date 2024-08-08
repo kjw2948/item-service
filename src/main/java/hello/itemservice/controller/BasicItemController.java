@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -53,10 +54,30 @@ public class BasicItemController {
 
     // 폼 데이터 받아오기 --> @ModelAttribute 로 한번에 받아오기
     // 이름 따로 등록 안하면 모델에 저장될 때 클래스의 첫글자 소문자로 변환하여 모델이름으로 저장
-    @PostMapping("/add")
+    //@PostMapping("/add")
     public String addItemV2(@ModelAttribute Item item, Model model) {
         itemRepository.save(item);
         return "/basic/item";
+    }
+
+    /**
+     * @ModelAttribute 생략 가능
+     * 새로고침 시 get 형식으로 끝나게 하기 --> PRG (Post Redirect Get) --> 아래 return 값은 실제 url 경로임 (resource 경로 x)
+     */
+
+    //@PostMapping("/add")
+    public String addItemV3(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/items" + item.getId();
+    }
+
+    @PostMapping("/add")
+    public String addItemV4(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
+        Item savedItem = itemRepository.save(item);
+        redirectAttributes.addAttribute("itemId", savedItem.getId());
+        redirectAttributes.addAttribute("status", true);
+        return "redirect:/basic/items/{itemId}"; // redirectAttributes 에 있는 값을 사용할 수 있음
+        // 그러면 return 에 없는 status 는 --> 쿼리 파라미터로 넘어감 --> ?status=true 이렇게
     }
 
     @GetMapping("/{itemId}/edit")
