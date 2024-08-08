@@ -11,4 +11,9 @@ import org.springframework.stereotype.Service;
 public class ItemService {
     private final ItemRepository itemRepository;
 
+    public void save(Item item) {
+        itemRepository.save(item);
+    }
+
+
 }
